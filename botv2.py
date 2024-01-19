@@ -6,7 +6,7 @@ from instagrapi import Client
 from telebot import types
 
 
-TOKEN = '5793992468:AAEwrwNurM5x7s7ebj6Ep-rblt0gnWQLxAE'
+TOKEN = 'TOKEN' #GET YOUR TOKEN ON BOTFATHER
 
 bot = telebot.TeleBot(TOKEN)
 
