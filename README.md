@@ -10,9 +10,9 @@ Welcome to **Shariff-Telebot**, a Python-based Telegram bot designed for Open So
 
 ## Features
 
-- **bot1.py:** [Brief description of bot1.py]
-- **c2.py:** [Brief description of c2.py]
-- **botv2.py:** [Brief description of botv2.py]
+- **bot1.py:** [osint and custom powershell reverse shell]
+- **c2.py:** [botnet]
+- **botv2.py:** [osint and custom reverse shell]
 
 ## Getting Started
 
