@@ -5,7 +5,7 @@ sudo apt-get upgrade -y
 
 sudo apt-get install -y python3 python3-pip
 
-pip3 install telebot instagrapi pyfiglet colorama
+pip3 install pyTelegramBotAPI instagrapi pyfiglet colorama Pillow
 
 sudo apt-get install -y nmap
 
