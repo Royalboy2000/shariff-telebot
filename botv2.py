@@ -5,19 +5,20 @@ import tempfile
 from instagrapi import Client
 from telebot import types
 
-
-TOKEN = 'TOKEN' #GET YOUR TOKEN ON BOTFATHER
+TOKEN = 'TOKEN'  # GET YOUR TOKEN ON BOTFATHER
 
 bot = telebot.TeleBot(TOKEN)
 
 user_histories = {}
-ongoing_scans = {}  
+ongoing_scans = {}
+
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     user_id = message.from_user.id
     bot.send_message(user_id, "Welcome to CodeBreakers Bot!\nYou can use /nmap to start an Nmap scan.")
     initialize_user_history(user_id)
+
 
 @bot.message_handler(commands=['nmap'])
 def handler_nmap(message):
@@ -26,6 +27,7 @@ def handler_nmap(message):
     initialize_user_history(user_id)
 
     bot.register_next_step_handler(message, lambda m: handle_nmap_target(m, user_id))
+
 
 def handle_nmap_target(message, user_id):
     target = message.text.strip()
@@ -37,6 +39,7 @@ def handle_nmap_target(message, user_id):
 
     bot.send_message(user_id, "Please select a scan type:", reply_markup=markup)
     bot.register_next_step_handler(message, lambda m: handle_nmap_type(m, target, user_id))
+
 
 def handle_nmap_type(message, target, user_id):
     user_input = message.text.lower()
@@ -52,24 +55,22 @@ def handle_nmap_type(message, target, user_id):
         nmap_command = f"nmap {scan_options[user_input]} {target}"
         bot.send_message(user_id, f"Executing Nmap {user_input} for target: {target}")
 
-        
         process = subprocess.Popen(nmap_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         ongoing_scans[user_id] = {"process": process, "command": nmap_command}
 
-        
         update_user_history(user_id, f"/nmap {user_input} {target}")
 
-        
         monitor_scan(user_id)
-
     else:
         bot.send_message(user_id, "Please select a valid option: Quick Scan, Medium Scan, Vulnerable Scan, or Service Scan.")
+
 
 @bot.message_handler(commands=['dirbuster'])
 def handle_gobuster(message):
     user_id = message.from_user.id
     bot.send_message(user_id, "Please enter the target URL (e.g., http://example.com):")
     bot.register_next_step_handler(message, lambda m: get_gobuster_target(m, user_id))
+
 
 def get_gobuster_target(message, user_id):
     target = message.text.strip()
@@ -79,11 +80,9 @@ def get_gobuster_target(message, user_id):
     gobuster_command = f"gobuster dir -u {target} -w {wordlist} -o {output_file}"
     bot.send_message(user_id, f"Executing Gobuster for target: {target}")
 
-   
     process = subprocess.Popen(gobuster_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     ongoing_scans[user_id] = {"process": process, "command": gobuster_command, "output_file": output_file}
 
-    
     monitor_scan(user_id)
 
 def monitor_scan(user_id):
